@@ -3,6 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*--------------------------------------------------------------
+*   Function: create_csv
+*   Parameters: double [], int, int
+*   Return: void
+*   Description: Create or append the datas into a csv file 
+*----------------------------------------------------------------
+*/
+
 void create_csv(double values[], int append_file, int file_ID)
 {  
     FILE* fp;
@@ -27,6 +35,14 @@ void create_csv(double values[], int append_file, int file_ID)
     fflush(fp);
     fclose(fp);
 }
+
+/*---------------------------------------------------------------------------------------------------------
+*   Function: calculate
+*   Parameters: double [], int, int, int
+*   Return: void
+*   Description: Calculates the standard deviation of some sample, and saves using the create_csv function
+*----------------------------------------------------------------------------------------------------------
+*/
 
 
 double calculate(double values[], int N, int append_file, int file_ID)
@@ -80,6 +96,14 @@ double calculate(double values[], int N, int append_file, int file_ID)
     printf("\nDados salvos no arquivo sample.csv\n");
     create_csv(stored_values, append_file, file_ID);    
 }
+
+/*--------------------------------------------------------------
+*   Function: runStd
+*   Parameters: void
+*   Return: void
+*   Description: Runs the calculate function 
+*----------------------------------------------------------------
+*/
 
 void runStd()
 {

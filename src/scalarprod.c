@@ -3,6 +3,14 @@
 #include <string.h>
 
 
+/*--------------------------------------------------------------
+*   Function: scalar_product
+*   Parameters: double [], double [], int
+*   Return: int
+*   Description: Calculates the scalar product of to vectors
+*----------------------------------------------------------------
+*/
+
 int scalar_product(int vector1[], int vector2[], int size_vector)
 {
     int scalar_prod = 0;
@@ -11,6 +19,14 @@ int scalar_product(int vector1[], int vector2[], int size_vector)
 
     return scalar_prod;
 }
+
+/*--------------------------------------------------------------
+*   Function: run_prod
+*   Parameters: void
+*   Return: void
+*   Description: Runs the scalar product function
+*----------------------------------------------------------------
+*/
 
 void run_prod()
 {
