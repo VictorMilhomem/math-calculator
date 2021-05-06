@@ -56,7 +56,11 @@ double regression_error(double y_values[], double x_values[], double coef_a, dou
     
     case 4: // ab-Exponential regression
         for (int i = 0; i < n; i++)
-            *(y_equation+i) = coef_a * pow(coef_b, x_values[i]);  // ŷ = a . b^x
+            *(y_equation+i) = coef_a * pow(coef_b, x_values[i]);
+    
+    case 5: // hyperbolic regression
+        for (int i = 0; i < n; i++)
+            *(y_equation+i) = coef_a + (coef_b / x_values[i]);  
     
     default:
         break;
@@ -72,9 +76,20 @@ double regression_error(double y_values[], double x_values[], double coef_a, dou
 
     regr_error = sum * 100 / n;
 
+    free(y_equation);
+
     return regr_error;
 
 }
+
+
+/*-------------------------------------------------------------------------------------------
+*   Function: coefficient
+*   Parameters: double [], double [], double, double, double, int, int, int
+*   Return: void
+*   Description: Calculates the correlation coefficient and the coefficient of determination
+*--------------------------------------------------------------------------------------------
+*/
 
 double coefficient(double x_values[], double y_values[], double sum_yi, double coef_a, double coef_b, int n, int coef_id, int id)
 {
@@ -101,7 +116,11 @@ double coefficient(double x_values[], double y_values[], double sum_yi, double c
     
     case 4: // ab-Exponential regression
         for (int i = 0; i < n; i++)
-            *(y_equation+i) = coef_a * pow(coef_b, x_values[i]);  // ŷ = a . b^x
+            *(y_equation+i) = coef_a * pow(coef_b, x_values[i]);
+    
+    case 5: // hyperbolic regression
+        for (int i = 0; i < n; i++)
+            *(y_equation+i) = coef_a + (coef_b / x_values[i]);  
     
     default:
         break;
@@ -326,12 +345,12 @@ void power_regression(double x_values[], double y_values[], int n)
 
 }
 
-/*--------------------------------------------------------------
+/*-----------------------------------------------------------------------
 *   Function: ab_exponential_regression
 *   Parameters: double [], double [], int
 *   Return: void
 *   Description: Approximate the function using ab-Exponencial regression 
-*----------------------------------------------------------------
+*------------------------------------------------------------------------
 */
 
 void ab_exponential_regression(double x_values[], double y_values[], int n)
@@ -377,6 +396,60 @@ void ab_exponential_regression(double x_values[], double y_values[], int n)
         printf("\ny = %lf . %lf^x\n", coef_a, coef_b);
     else
         printf("\ny = %lfx . %lf^x\n", coef_a, coef_b);
+
+    printf("Coeficiente de correlação: %lf\n", coef_r);
+    printf("Coeficiente de determinaão: %lf\n", R_square);
+    printf("Erro padrão da regressão: %lf %c\n", std_err_of_reg, PERCENT);
+    printf("\n----------------------------------------------------------\n");
+}
+
+
+/*-----------------------------------------------------------------------
+*   Function: hyperbolic_regression
+*   Parameters: double [], double [], int
+*   Return: void
+*   Description: Approximate the function using hyperbolic regression 
+*------------------------------------------------------------------------
+*/
+
+
+void hyperbolic_regression(double x_values[], double y_values[], int n)
+{
+    int id = 5;
+    double coef_a, coef_b, coef_r, R_square, std_err_of_reg, aux_up, aux_down;
+    register double sum_xi = 0; register double sum_yi = 0;
+    register double sum_yi_div_xi = 0; register double sum_xi_pow = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        sum_xi += 1 / x_values[i];
+        sum_xi_pow += 1 / pow(x_values[i], 2);
+
+        sum_yi += y_values[i];
+        sum_yi_div_xi += y_values[i] / x_values[i];
+    }
+
+    aux_up = (n * sum_yi_div_xi) - (sum_xi * sum_yi);
+    aux_down = (n * sum_xi_pow) - (pow(sum_xi, 2));
+
+    coef_b = aux_up / aux_down;
+
+    coef_a = (sum_yi / n) - (coef_b * sum_xi / n);
+
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
+
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
+
+    std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
+    
+    // Showing the results
+
+    printf("\n----------------Regressão Hiperbolica------------------\n");
+
+    if (coef_b >= 0)
+        printf("\ny = %lf + (%lf / x)\n", coef_a, coef_b);
+    else
+        printf("\ny = %lfx - (%lf / x)\n", coef_a, abs_value(coef_b));
 
     printf("Coeficiente de correlação: %lf\n", coef_r);
     printf("Coeficiente de determinaão: %lf\n", R_square);
