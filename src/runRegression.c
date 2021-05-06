@@ -35,6 +35,7 @@ void run_regression()
         power_regression(vector1, vector2, number_of_values);
         ab_exponential_regression(vector1, vector2, number_of_values);
         hyperbolic_regression(vector1, vector2, number_of_values);
+        exponential_regression(vector1, vector2, number_of_values);
         
 
         free(vector1);

@@ -57,10 +57,17 @@ double regression_error(double y_values[], double x_values[], double coef_a, dou
     case 4: // ab-Exponential regression
         for (int i = 0; i < n; i++)
             *(y_equation+i) = coef_a * pow(coef_b, x_values[i]);
+        break;
     
     case 5: // hyperbolic regression
         for (int i = 0; i < n; i++)
-            *(y_equation+i) = coef_a + (coef_b / x_values[i]);  
+            *(y_equation+i) = coef_a + (coef_b / x_values[i]);
+        break;
+
+    case 6: // exponential regression
+        for (int i = 0; i < n; i++)
+            *(y_equation+i) =  exp(coef_a + (coef_b * x_values[i]));
+        break;  
     
     default:
         break;
@@ -117,10 +124,17 @@ double coefficient(double x_values[], double y_values[], double sum_yi, double c
     case 4: // ab-Exponential regression
         for (int i = 0; i < n; i++)
             *(y_equation+i) = coef_a * pow(coef_b, x_values[i]);
+        break;
     
     case 5: // hyperbolic regression
         for (int i = 0; i < n; i++)
-            *(y_equation+i) = coef_a + (coef_b / x_values[i]);  
+            *(y_equation+i) = coef_a + (coef_b / x_values[i]);
+        break;
+
+    case 6: // exponential regression
+        for (int i = 0; i < n; i++)
+            *(y_equation+i) =  exp(coef_a + (coef_b * x_values[i]));
+        break;
     
     default:
         break;
@@ -422,11 +436,11 @@ void hyperbolic_regression(double x_values[], double y_values[], int n)
 
     for (int i = 0; i < n; i++)
     {
-        sum_xi += 1 / x_values[i];
-        sum_xi_pow += 1 / pow(x_values[i], 2);
+        sum_xi += 1 / x_values[i];  // ∑(xi)
+        sum_xi_pow += 1 / pow(x_values[i], 2);  // ∑(xi)²
 
-        sum_yi += y_values[i];
-        sum_yi_div_xi += y_values[i] / x_values[i];
+        sum_yi += y_values[i];  // ∑(yi)
+        sum_yi_div_xi += y_values[i] / x_values[i];  // ∑(yi / xi)
     }
 
     aux_up = (n * sum_yi_div_xi) - (sum_xi * sum_yi);
@@ -455,5 +469,61 @@ void hyperbolic_regression(double x_values[], double y_values[], int n)
     printf("Coeficiente de determinaão: %lf\n", R_square);
     printf("Erro padrão da regressão: %lf %c\n", std_err_of_reg, PERCENT);
     printf("\n----------------------------------------------------------\n");
+}
+
+
+/*-----------------------------------------------------------------------
+*   Function: exponential_regression
+*   Parameters: double [], double [], int
+*   Return: void
+*   Description: Approximate the function using exponential regression 
+*------------------------------------------------------------------------
+*/
+
+void exponential_regression(double x_values[], double y_values[], int n)
+{
+    int id = 6;
+    double coef_a, coef_b, coef_r, R_square, std_err_of_reg, aux_up, aux_down;
+    register double sum_xi = 0; register double sum_yi = 0; register double sum_lnyi = 0;
+    register double sum_lnyi_times_xi = 0; register double sum_xi_pow = 0;
+
+    for (int i = 0; i < n; i++) 
+    {
+        sum_xi += x_values[i];  // ∑(xi)
+        sum_xi_pow += pow(x_values[i], 2);  // ∑(xi)²
+
+        sum_yi += y_values[i];  // ∑(yi)
+        sum_lnyi += log(y_values[i]);  // ∑ln(yi)
+
+        sum_lnyi_times_xi += x_values[i] * log(y_values[i]);  // ∑(xi * ln(yi))
+    }
+
+    aux_up = (n * sum_lnyi_times_xi) - (sum_xi * sum_lnyi);
+    aux_down = (n * sum_xi_pow) - pow(sum_xi, 2);
+
+    coef_b = aux_up / aux_down;
+
+    coef_a = (sum_lnyi / n) - (coef_b * sum_xi / n);
+
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
+
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
+
+    std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
+    
+    // Showing the results
+
+    printf("\n----------------Regressão Exponencial---------------------\n");
+
+    if (coef_b >= 0)
+        printf("\ny = e^(%lf + %lfx)\n", coef_a, coef_b);
+    else
+        printf("\ny = e^(%lf - %lfx)\n", coef_a, abs_value(coef_b));
+
+    printf("Coeficiente de correlação: %lf\n", coef_r);
+    printf("Coeficiente de determinaão: %lf\n", R_square);
+    printf("Erro padrão da regressão: %lf %c\n", std_err_of_reg, PERCENT);
+    printf("\n----------------------------------------------------------\n");
+
 }
 
