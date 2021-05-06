@@ -1,8 +1,13 @@
 #ifndef CALC_H
 #define CALC_H
-    void help();
-    void intro();
-    void runStd();
-    void run_regression();
-    void run_prod();
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void help();
+void intro();
+void runStd();
+void run_regression();
+void run_prod();
 #endif

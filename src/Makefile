@@ -1,5 +1,5 @@
-calculator: main.o standard_devi.o help.o scalarprod.o regression.o runMenu.o
-	gcc main.o standard_devi.o regression.o help.o scalarprod.o runMenu.o -o calculator -lm
+calculator: main.o standard_devi.o help.o scalarprod.o regression.o runMenu.o runRegression.o
+	gcc main.o standard_devi.o regression.o help.o scalarprod.o runMenu.o runRegression.o -o calculator -lm
 
 main.o: main.c calc.h
 	gcc -c main.c
@@ -13,8 +13,11 @@ help.o: help.c
 standard_devi.o: standard_devi.c
 	gcc -c standard_devi.c -lm
 
-regression.o: regression.c
+regression.o: regression.c regression.h
 	gcc -c regression.c -lm
+
+runRegression.o: runRegression.c regression.h
+	gcc -c runRegression.c -lm
 
 scalarprod.o: scalarprod.c
 	gcc -c scalarprod.c
