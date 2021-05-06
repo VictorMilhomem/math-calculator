@@ -76,6 +76,68 @@ double regression_error(double y_values[], double x_values[], double coef_a, dou
 
 }
 
+double coefficient(double x_values[], double y_values[], double sum_yi, double coef_a, double coef_b, int n, int coef_id, int id)
+{
+    double coef_r, R_square, aux_down, aux_up;
+    double *y_equation = malloc(n * sizeof(double)); double sum_yi_y_equation = 0; double sum_yi_y = 0;
+    double y_aux = sum_yi / n;  // y = (∑yi) / n
+
+    switch (id)
+    {
+    case 1: // linear regression
+        for (int i = 0; i < n; i++)
+            *(y_equation+i) = (coef_a * x_values[i]) + coef_b;
+        break;
+
+    case 2: // logarithmic regression
+        for (int i = 0; i < n; i++)
+            *(y_equation+i) = coef_a + (coef_b * log(x_values[i]));
+        break;
+
+    case 3: // power regression
+        for (int i = 0; i < n; i++)
+            *(y_equation+i) = coef_a * pow(x_values[i], coef_b); 
+        break;
+    
+    case 4: // ab-Exponential regression
+        for (int i = 0; i < n; i++)
+            *(y_equation+i) = coef_a * pow(coef_b, x_values[i]);  // ŷ = a . b^x
+    
+    default:
+        break;
+    }
+    
+    aux_down = 0;
+    aux_up = 0;
+    for (int j = 0; j < n; j++)
+    {
+        aux_up += pow((y_values[j] - y_equation[j]), 2);  // ∑(yi - ŷi)²
+        aux_down += pow(y_values[j] - y_aux, 2);  // ∑(yi - y)²
+    }
+    sum_yi_y_equation = aux_up / aux_down;
+
+    // correlation coefficient
+    coef_r = sqrt(1 - sum_yi_y_equation);
+
+    // coefficient of determination
+    R_square = pow(coef_r, 2);
+
+    free(y_equation);
+
+    switch (coef_id)
+    {
+    case 1:
+        return coef_r;
+        break;
+    case 2:
+        return R_square;
+        break;
+    
+    default:
+        break;
+    }
+}
+
 
 /*----------------------------------------------------------------
 *   Function: linear_regression
@@ -177,27 +239,12 @@ void log_regression(double x_values[], double y_values[], int n)
 
     coef_a = (sum_yi / n) - (coef_b * sum_ln_xi / n);  // (∑yi / n) - (b * ∑ln(xi) / n)
 
-    double *y_equation = malloc(n * sizeof(double)); double sum_yi_y_equation = 0; double sum_yi_y = 0;
-    double y_aux = sum_yi / n;  // y = (∑yi) / n
-
-
-    for (int i = 0; i < n; i++)
-        *(y_equation+i) = coef_a + (coef_b * log(x_values[i]));  // ŷ = a + b log(x)
-    
-    aux_down = 0;
-    aux_up = 0;
-    for (int j = 0; j < n; j++)
-    {
-        aux_up += pow((y_values[j] - y_equation[j]), 2);  // ∑(yi - ŷi)²
-        aux_down += pow(y_values[j] - y_aux, 2);  // ∑(yi - y)²
-    }
-    sum_yi_y_equation = aux_up / aux_down;
 
     // correlation coefficient
-    coef_r = sqrt(1 - sum_yi_y_equation);
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
 
     // coefficient of determination
-    R_square = pow(coef_r, 2);
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
 
     // standard error of regression
     std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
@@ -254,27 +301,12 @@ void power_regression(double x_values[], double y_values[], int n)
     double temp = (sum_ln_yi / n) - (coef_b * sum_ln_xi / n);
     coef_a = exp(temp);
 
-    double *y_equation = malloc(n * sizeof(double)); double sum_yi_y_equation = 0; double sum_yi_y = 0;
-    double y_aux = sum_yi / n;  // y = (∑yi) / n
-
-
-    for (int i = 0; i < n; i++)
-        *(y_equation+i) = coef_a * pow(x_values[i], coef_b);  // ŷ = a . x^b
-    
-    aux_down = 0;
-    aux_up = 0;
-    for (int j = 0; j < n; j++)
-    {
-        aux_up += pow((y_values[j] - y_equation[j]), 2);  // ∑(yi - ŷi)²
-        aux_down += pow(y_values[j] - y_aux, 2);  // ∑(yi - y)²
-    }
-    sum_yi_y_equation = aux_up / aux_down;
 
     // correlation coefficient
-    coef_r = sqrt(1 - sum_yi_y_equation);
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
 
     // coefficient of determination
-    R_square = pow(coef_r, 2);
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
 
     std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
 
@@ -328,27 +360,12 @@ void ab_exponential_regression(double x_values[], double y_values[], int n)
 
     coef_a = exp((sum_ln_yi / n) - (log(coef_b) * sum_xi / n));
 
-    double *y_equation = malloc(n * sizeof(double)); double sum_yi_y_equation = 0; double sum_yi_y = 0;
-    double y_aux = sum_yi / n;  // y = (∑yi) / n
-
-
-    for (int i = 0; i < n; i++)
-        *(y_equation+i) = coef_a * pow(coef_b, x_values[i]);  // ŷ = a . b^x
-    
-    aux_down = 0;
-    aux_up = 0;
-    for (int j = 0; j < n; j++)
-    {
-        aux_up += pow((y_values[j] - y_equation[j]), 2);  // ∑(yi - ŷi)²
-        aux_down += pow(y_values[j] - y_aux, 2);  // ∑(yi - y)²
-    }
-    sum_yi_y_equation = aux_up / aux_down;
 
     // correlation coefficient
-    coef_r = sqrt(1 - sum_yi_y_equation);
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
 
     // coefficient of determination
-    R_square = pow(coef_r, 2);
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
 
     std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
 
@@ -364,7 +381,6 @@ void ab_exponential_regression(double x_values[], double y_values[], int n)
     printf("Coeficiente de correlação: %lf\n", coef_r);
     printf("Coeficiente de determinaão: %lf\n", R_square);
     printf("Erro padrão da regressão: %lf %c\n", std_err_of_reg, PERCENT);
-    printf("\n-------------------------------------------------------\n");
+    printf("\n----------------------------------------------------------\n");
 }
-
 
