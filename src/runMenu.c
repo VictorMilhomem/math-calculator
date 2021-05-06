@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "calc.h"
 
 
-void help();
-void intro();
-void runStd();
-void run_regression();
-void run_prod();
 
 void run()
 {
@@ -43,7 +39,7 @@ void intro()
     printf("\n######################### MENU ################################\n");
     printf("#    (0) - Ajuda                                              #\n");
     printf("#    (1) - Calculo Desvio Padrão                              #\n");
-    printf("#    (2) - Aproximação de Função por Regressão                #\n");
+    printf("#    (2) - Aproximação de Função com análise de Regressão     #\n");
     printf("#    (3) - Calculo do Produto escalar                         #\n");
     printf("#    (4) - Sair                                               #\n");
     printf("###############################################################\n");

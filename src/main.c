@@ -1,13 +1,10 @@
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
+#include <math.h>
 #include <string.h>
+#include "calc.h"
 
 void run();
-void help();
-void run_regression();
-void runStd();
-void run_prod();
 
 int main(int argc, char* argv[])
 {
