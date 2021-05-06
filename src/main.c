@@ -7,7 +7,6 @@ void run();
 void help();
 void run_regression();
 void runStd();
-void runMerge();
 void run_prod();
 
 int main(int argc, char* argv[])
@@ -23,8 +22,6 @@ int main(int argc, char* argv[])
             help();
         else if (strcmp(argv[1],"-std") == 0)
             runStd();
-        else if (strcmp(argv[1],"-ms") == 0)
-            runMerge();
         else if (strcmp(argv[1],"-sp") == 0)
             run_prod();
         else if (strcmp(argv[1],"-r") == 0)
