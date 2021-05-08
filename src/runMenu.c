@@ -23,6 +23,8 @@ void run()
         case 3:
             run_prod(); break;
         case 4:
+            runEllipsoid(); break;
+        case 5:
             exit(0); break;
         default:
             break;
@@ -38,6 +40,7 @@ void intro()
     printf("#    (1) - Calculo Desvio Padrão                              #\n");
     printf("#    (2) - Aproximação de Função com análise de Regressão     #\n");
     printf("#    (3) - Calculo do Produto escalar                         #\n");
-    printf("#    (4) - Sair                                               #\n");
+    printf("#    (4) - Calculo Ellipsoide                                 #\n");
+    printf("#    (5) - Sair                                               #\n");
     printf("###############################################################\n");
 }

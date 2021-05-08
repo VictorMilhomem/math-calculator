@@ -10,4 +10,5 @@ void intro();
 void runStd();
 void run_regression();
 void run_prod();
+void runEllipsoid();
 #endif

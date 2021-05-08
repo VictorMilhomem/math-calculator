@@ -1,5 +1,5 @@
-calculator: main.o standard_devi.o help.o scalarprod.o regression.o runMenu.o runRegression.o
-	gcc main.o standard_devi.o regression.o help.o scalarprod.o runMenu.o runRegression.o -o calculator -lm
+calculator: main.o standard_devi.o help.o scalarprod.o regression.o runMenu.o runRegression.o scaleneEllipsoid.o
+	gcc main.o standard_devi.o regression.o help.o scalarprod.o runMenu.o runRegression.o scaleneEllipsoid.o -o calculator -lm
 
 main.o: main.c calc.h
 	gcc -c main.c
@@ -21,6 +21,9 @@ runRegression.o: runRegression.c regression.h
 
 scalarprod.o: scalarprod.c
 	gcc -c scalarprod.c
+
+scaleneEllipsoid.o: scaleneEllipsoid.c
+	gcc -c scaleneEllipsoid.c -lm
 
 clean:
 	rm *.o calculator
