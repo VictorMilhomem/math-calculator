@@ -10,7 +10,7 @@
 *----------------------------------------------------------------
 */
 
-void create_csv(double values[], int append_file, int file_ID)
+void create_csv(double values[], int N, int append_file, int file_ID)
 {  
     FILE* fp;
     if(!append_file)
@@ -25,14 +25,29 @@ void create_csv(double values[], int append_file, int file_ID)
     }
 
     fprintf(fp, "%d,", file_ID);
+    fprintf(fp, "%d,", N);
     
-    for(int i = 0; i < 7; i++)
+    for(int i = 0; i < 6; i++)
     {
         fprintf(fp, "%lf,", values[i]);
     }
     fputc('\n', fp);
     fflush(fp);
     fclose(fp);
+}
+
+void show_results(int N, double results[])
+{
+    // showing the results
+    printf("-----------------Resultados--------------------------");
+    printf("\nTamanho da amostra(N): %d\n", N);
+    printf("Soma dos numeros: %lf\n", results[0]);
+    printf("Media: %lf\n", results[1]);
+    printf("Desvio padrão(σ): %lf\n", results[2]);
+    printf("Variação da população(σ²): %lf\n", results[3]);
+    printf("Desvio padrão da amostra(s): %lf\n", results[4]);
+    printf("Variação da amostra(s²): %lf\n", results[5]);
+    printf("------------------------------------------------------");
 }
 
 /*---------------------------------------------------------------------------------------------------------
@@ -56,10 +71,6 @@ double calculate(double values[], int N, int append_file, int file_ID)
     medium_value = sum/2;
     average = sum/N;
 
-    printf("\nTamanho da amostra(N): %d\n", N);
-    printf("Soma dos numeros: %lf\n", sum);
-    printf("Media: %lf\n", average);
-
 
     // calculate the standard deviation 
     double sum_value_average = 0;
@@ -72,8 +83,6 @@ double calculate(double values[], int N, int append_file, int file_ID)
 
     std_dev = sqrt(sum_value_average/N);
     population_variation = pow(std_dev, 2);
-    printf("Desvio padrão(σ): %lf\n", std_dev);
-    printf("Variação da população(σ²): %lf\n", population_variation);
 
     // sample standard deviation
     sum_value_average = 0;
@@ -85,14 +94,20 @@ double calculate(double values[], int N, int append_file, int file_ID)
 
     std_dev_sample = sqrt(sum_value_average/(N-1));
     sample_population_variation = pow(std_dev_sample, 2);
-    printf("Desvio padrão da amostra(s): %lf\n", std_dev_sample);
-    printf("Variação da amostra(s²): %lf\n", sample_population_variation);
+
+    // showing the results
+    double *results = malloc(6 * sizeof(double));
+    *(results+0) = sum; *(results+1) = average; *(results+2) = std_dev; *(results+3) = population_variation;
+    *(results+4) = std_dev_sample; *(results+5) = sample_population_variation;
+
+    show_results(N, results);
 
     // storing all of the calculated values
-    double stored_values[7] = {N, sum, average, std_dev, population_variation, std_dev_sample, sample_population_variation};
 
+    create_csv(results, N, append_file, file_ID);    
     printf("\nDados salvos no arquivo sample.csv\n");
-    create_csv(stored_values, append_file, file_ID);    
+    free(results);
+
 }
 
 /*--------------------------------------------------------------
