@@ -5,7 +5,6 @@
 
 /*--------------------------------------------------------------
 *   Function: create_csv
-*   Parameters: double [], int, int
 *   Return: void
 *   Description: Create or append the datas into a csv file 
 *----------------------------------------------------------------
@@ -38,7 +37,6 @@ void create_csv(double values[], int append_file, int file_ID)
 
 /*---------------------------------------------------------------------------------------------------------
 *   Function: calculate
-*   Parameters: double [], int, int, int
 *   Return: void
 *   Description: Calculates the standard deviation of some sample, and saves using the create_csv function
 *----------------------------------------------------------------------------------------------------------
@@ -99,7 +97,6 @@ double calculate(double values[], int N, int append_file, int file_ID)
 
 /*--------------------------------------------------------------
 *   Function: runStd
-*   Parameters: void
 *   Return: void
 *   Description: Runs the calculate function 
 *----------------------------------------------------------------
