@@ -2,10 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
 #ifndef PI
 #define PI 3.14159265359
 #endif
 
+
+/*-------------------------------------------------------------------
+*   Function: scalene_ellipsoid
+*   Return: void
+*   Description: Calculate the volume and the surface of an ellipsoid
+*--------------------------------------------------------------------
+*/
 
 void scalene_ellipsoid(double pos[])
 {

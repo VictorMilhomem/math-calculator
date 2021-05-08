@@ -8,7 +8,6 @@
 
 /*-----------------------------------------------
 *   Function: abs_value
-*   Parameters: double
 *   Return: double
 *   Description: Returns the absolute value
 *-------------------------------------------------
@@ -25,7 +24,6 @@ double abs_value(double value)
 
 /*-------------------------------------------------------------
 *   Function: regression_error
-*   Parameters: double [], double[], double, double, int, int
 *   Return: double
 *   Description: standard error of regression function
 *-------------------------------------------------------------
@@ -92,7 +90,6 @@ double regression_error(double y_values[], double x_values[], double coef_a, dou
 
 /*-------------------------------------------------------------------------------------------
 *   Function: coefficient
-*   Parameters: double [], double [], double, double, double, int, int, int
 *   Return: void
 *   Description: Calculates the correlation coefficient and the coefficient of determination
 *--------------------------------------------------------------------------------------------
@@ -174,7 +171,6 @@ double coefficient(double x_values[], double y_values[], double sum_yi, double c
 
 /*----------------------------------------------------------------
 *   Function: linear_regression
-*   Parameters: double [], double [], int
 *   Return: void
 *   Description: Approximate the function using linear regression 
 *-----------------------------------------------------------------
@@ -241,7 +237,6 @@ void linear_regression(double x_values[], double y_values[], int n)
 
 /*-----------------------------------------------------------------------
 *   Function: log_regression
-*   Parameters: double [], double [], int
 *   Return: void
 *   Description: Approximate the function using logarithmic regression 
 *----------------------------------------------------------------------
@@ -301,7 +296,6 @@ void log_regression(double x_values[], double y_values[], int n)
 
 /*--------------------------------------------------------------
 *   Function: power_regression
-*   Parameters: double [], double [], int
 *   Return: void
 *   Description: Approximate the function using power regression 
 *----------------------------------------------------------------
@@ -361,7 +355,6 @@ void power_regression(double x_values[], double y_values[], int n)
 
 /*-----------------------------------------------------------------------
 *   Function: ab_exponential_regression
-*   Parameters: double [], double [], int
 *   Return: void
 *   Description: Approximate the function using ab-Exponencial regression 
 *------------------------------------------------------------------------
@@ -420,7 +413,6 @@ void ab_exponential_regression(double x_values[], double y_values[], int n)
 
 /*-----------------------------------------------------------------------
 *   Function: hyperbolic_regression
-*   Parameters: double [], double [], int
 *   Return: void
 *   Description: Approximate the function using hyperbolic regression 
 *------------------------------------------------------------------------
@@ -474,7 +466,6 @@ void hyperbolic_regression(double x_values[], double y_values[], int n)
 
 /*-----------------------------------------------------------------------
 *   Function: exponential_regression
-*   Parameters: double [], double [], int
 *   Return: void
 *   Description: Approximate the function using exponential regression 
 *------------------------------------------------------------------------
