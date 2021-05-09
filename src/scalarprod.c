@@ -35,14 +35,14 @@ void run_prod()
         int *vector1;
         int *vector2;
 
-        printf("Digite a quantidade de dados de cada vetor: ");
+        printf("Enter the amount of data: ");
         scanf ("%d", &number_of_values);
 
         if(number_of_values >= 1)
         {
             vector1 = malloc(number_of_values * sizeof(int));
             vector2 = malloc(number_of_values * sizeof(int));
-            printf("Digite os dados do primeiro vetor:\n");
+            printf("Enter the first vector data:\n");
             int val;
             for (int i = 0; i < number_of_values; i++)
             {
@@ -50,7 +50,7 @@ void run_prod()
                 *(vector1+ i) = val;
             }
 
-            printf("Digite os dados do segundo vetor:\n");
+            printf("Enter the first vector data:\n");
             int val2;
             for (int i = 0; i < number_of_values; i++)
             {
@@ -61,7 +61,7 @@ void run_prod()
             // calculate the scalar product
             int product;
             product = scalar_product(vector1, vector2, number_of_values);
-            printf("O produto escalar é: %d\n\n", product);
+            printf("The scalar product is: %d\n\n", product);
 
             free(vector1);
             free(vector2);
@@ -74,10 +74,10 @@ void run_prod()
         }
 
         char resp[1];
-        printf("Deseja utilizar novos dados(s/n)? ");
+        printf("You want to use new data(y/n)? ");
         scanf("%s", &resp);
 
-        if(strcmp(resp, "s") == 0)
+        if(strcmp(resp, "y") == 0)
         {
             continue;
         }

@@ -28,9 +28,9 @@ void scalene_ellipsoid(double pos[])
     b_times_c = pow(pos_c, p) * pow(pos_c, p);
     surface = 4 * PI * pow((a_times_c + a_times_b + b_times_c)/3, 1/p);
 
-    printf("\n----------------Elipsoide Escalena---------------------\n");
-    printf("Volume da Elipsoide: %lf\n", volume);
-    printf("Superfice da Elipsoide: %lf\n", surface);
+    printf("\n----------------Scalene Ellipsoid---------------------\n");
+    printf("Volume of Ellipsoid: %lf\n", volume);
+    printf("Surface of Ellipsoid: %lf\n", surface);
     printf("\n----------------------------------------------------------\n");
 }
 
@@ -42,7 +42,7 @@ void runEllipsoid()
         int number_of_values = 3;
         double *vector1 = malloc(number_of_values * sizeof(double));
        
-        printf("Digite o Semi-eixo a, Semi-eixo b, Semi-eixo c respectivamente:\n");
+        printf("Enter the Semi-axis a, Semi-axis b, Semi-axis c, respectively:\n");
         double val;
         for (int i = 0; i < number_of_values; i++)
         {
@@ -54,10 +54,10 @@ void runEllipsoid()
         free(vector1);
 
         char resp[1];
-        printf("Deseja utilizar novos dados(s/n)? ");
+        printf("You want to use new data(y/n)? ");
         scanf("%s", &resp);
 
-        if(strcmp(resp, "s") == 0)
+        if(strcmp(resp, "y") == 0)
         {
             continue;
         }

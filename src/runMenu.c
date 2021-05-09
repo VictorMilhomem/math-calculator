@@ -11,7 +11,7 @@ void run()
         intro();
 
         int value;
-        printf("Opção desejada: ");
+        printf("Desired option: ");
         scanf("%d", &value);
 
         switch (value)
@@ -38,11 +38,11 @@ void run()
 void intro()
 {
     printf("\n######################### MENU ################################\n");
-    printf("#    (0) - Ajuda                                              #\n");
-    printf("#    (1) - Calculo Desvio Padrão                              #\n");
-    printf("#    (2) - Aproximação de Função com análise de Regressão     #\n");
-    printf("#    (3) - Calculo do Produto escalar                         #\n");
-    printf("#    (4) - Calculo Ellipsoide                                 #\n");
-    printf("#    (5) - Sair                                               #\n");
+    printf("#    (0) - Help                                               #\n");
+    printf("#    (1) - Calculates the Standard Deviation                  #\n");
+    printf("#    (2) - Function Approximation with Regression Analysis    #\n");
+    printf("#    (3) - Calculates the Scalar Product                      #\n");
+    printf("#    (4) - Calculates Ellipsoid                               #\n");
+    printf("#    (5) - Exit                                               #\n");
     printf("###############################################################\n");
 }

@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
             run();
     }
 
-    if (argc == 2)
+    else if (argc == 2)
     {
         if (strcmp(argv[1],"-h") == 0)
             help();
@@ -29,6 +29,9 @@ int main(int argc, char* argv[])
         else{
             return 1;
         }
+    }
+    else {
+        return 1;
     }
 
     return 0;

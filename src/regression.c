@@ -222,15 +222,15 @@ void linear_regression(double x_values[], double y_values[], int n)
     std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
 
     // Showing the results
-    printf("\n----------------Regressão Linear------------------------\n");
+    printf("\n----------------Linear Regression---------------------\n");
     if (coef_b >= 0)
         printf("\ny = %lfx + %lf\n", coef_a, coef_b);
     else
         printf("\ny = %lfx - %lf\n", coef_a, abs_value(coef_b));
 
-    printf("Coeficiente de correlação: %lf\n", coef_r);
-    printf("Coeficiente de determinaão: %lf\n", R_square);
-    printf("Erro padrão da regressão: %lf %c \n", std_err_of_reg, PERCENT);
+    printf("Correlation coefficient: %lf\n", coef_r);
+    printf("Coefficient of determination: %lf\n", R_square);
+    printf("Standard regression error: %lf %c \n", std_err_of_reg, PERCENT);
     printf("\n-------------------------------------------------------\n");
 }
 
@@ -279,16 +279,16 @@ void log_regression(double x_values[], double y_values[], int n)
 
     // Showing the results
 
-    printf("\n----------------Regressão Logarítmica------------------\n");
+    printf("\n----------------Logarithmic Regression------------------\n");
 
     if (coef_b >= 0)
         printf("\ny = %lf + %lfln(x)\n", coef_a, coef_b);
     else
         printf("\ny = %lfx - %lfln(x)\n", coef_a, abs_value(coef_b));
 
-    printf("Coeficiente de correlação: %lf\n", coef_r);
-    printf("Coeficiente de determinaão: %lf\n", R_square);
-    printf("Erro padrão da regressão: %lf %c\n", std_err_of_reg, PERCENT);
+    printf("Correlation coefficient: %lf\n", coef_r);
+    printf("Coefficient of determination: %lf\n", R_square);
+    printf("Standard regression error: %lf %c \n", std_err_of_reg, PERCENT);
     printf("\n-------------------------------------------------------\n");
 
 }
@@ -339,16 +339,16 @@ void power_regression(double x_values[], double y_values[], int n)
 
     // Showing the results
 
-    printf("\n----------------Regressão de Potência------------------\n");
+    printf("\n----------------Power Regression---------------------\n");
 
     if (coef_b >= 0)
         printf("\ny = %lf . x^%lf\n", coef_a, coef_b);
     else
         printf("\ny = %lfx . x^(%lf)\n", coef_a, coef_b);
 
-    printf("Coeficiente de correlação: %lf\n", coef_r);
-    printf("Coeficiente de determinaão: %lf\n", R_square);
-    printf("Erro padrão da regressão: %lf %c\n", std_err_of_reg, PERCENT);
+    printf("Correlation coefficient: %lf\n", coef_r);
+    printf("Coefficient of determination: %lf\n", R_square);
+    printf("Standard regression error: %lf %c \n", std_err_of_reg, PERCENT);
     printf("\n-------------------------------------------------------\n");
 
 }
@@ -397,16 +397,16 @@ void ab_exponential_regression(double x_values[], double y_values[], int n)
 
     // Showing the results
 
-    printf("\n----------------Regressão ab-Exponencial------------------\n");
+    printf("\n----------------ab-Exponential Regression------------------\n");
 
     if (coef_b >= 0)
         printf("\ny = %lf . %lf^x\n", coef_a, coef_b);
     else
         printf("\ny = %lfx . %lf^x\n", coef_a, coef_b);
 
-    printf("Coeficiente de correlação: %lf\n", coef_r);
-    printf("Coeficiente de determinaão: %lf\n", R_square);
-    printf("Erro padrão da regressão: %lf %c\n", std_err_of_reg, PERCENT);
+    printf("Correlation coefficient: %lf\n", coef_r);
+    printf("Coefficient of determination: %lf\n", R_square);
+    printf("Standard regression error: %lf %c \n", std_err_of_reg, PERCENT);
     printf("\n----------------------------------------------------------\n");
 }
 
@@ -450,16 +450,16 @@ void hyperbolic_regression(double x_values[], double y_values[], int n)
     
     // Showing the results
 
-    printf("\n----------------Regressão Hiperbolica------------------\n");
+    printf("\n----------------Hyperbolic Regression------------------\n");
 
     if (coef_b >= 0)
         printf("\ny = %lf + (%lf / x)\n", coef_a, coef_b);
     else
         printf("\ny = %lfx - (%lf / x)\n", coef_a, abs_value(coef_b));
 
-    printf("Coeficiente de correlação: %lf\n", coef_r);
-    printf("Coeficiente de determinaão: %lf\n", R_square);
-    printf("Erro padrão da regressão: %lf %c\n", std_err_of_reg, PERCENT);
+    printf("Correlation coefficient: %lf\n", coef_r);
+    printf("Coefficient of determination: %lf\n", R_square);
+    printf("Standard regression error: %lf %c \n", std_err_of_reg, PERCENT);
     printf("\n----------------------------------------------------------\n");
 }
 
@@ -504,16 +504,16 @@ void exponential_regression(double x_values[], double y_values[], int n)
     
     // Showing the results
 
-    printf("\n----------------Regressão Exponencial---------------------\n");
+    printf("\n----------------Exponential Regression---------------------\n");
 
     if (coef_b >= 0)
         printf("\ny = e^(%lf + %lfx)\n", coef_a, coef_b);
     else
         printf("\ny = e^(%lf - %lfx)\n", coef_a, abs_value(coef_b));
 
-    printf("Coeficiente de correlação: %lf\n", coef_r);
-    printf("Coeficiente de determinaão: %lf\n", R_square);
-    printf("Erro padrão da regressão: %lf %c\n", std_err_of_reg, PERCENT);
+    printf("Correlation coefficient: %lf\n", coef_r);
+    printf("Coefficient of determination: %lf\n", R_square);
+    printf("Standard regression error: %lf %c \n", std_err_of_reg, PERCENT);
     printf("\n----------------------------------------------------------\n");
 
 }

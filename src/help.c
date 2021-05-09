@@ -2,11 +2,11 @@
 
 void help()
 {
-    printf("\nModo de usar: \n");
+    printf("\nHow to use: \n");
     printf("\t./calculator -[options]\n");
-    printf("\nOpções Gerais: \n");
-    printf("\t-std: Para o calculo de desvio padrão.\n\n");
-    printf("\t-sp: Para o calculo do produto escalar de dois vetores de inteiros.\n\n");
-    printf("\t-r: Para o calculo de regressões.\n\n");
-    printf("\t-el: Para o calculo do volume e da superfice de uma Elipsoid.\n\n");
+    printf("\nOptions: \n");
+    printf("\t-std: Calculates the standard deviation.\n\n");
+    printf("\t-sp: Calculates the scalar product between to vectors.\n\n");
+    printf("\t-r: Approximates function with regression analysis.\n\n");
+    printf("\t-el: Calculates the volume and the surface of an ellipsoid.\n\n");
 }

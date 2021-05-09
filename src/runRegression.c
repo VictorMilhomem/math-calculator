@@ -17,19 +17,19 @@ void run_regression()
         int number_of_values;
         double *vector1 = malloc(number_of_values * sizeof(double));
         double *vector2 = malloc(number_of_values * sizeof(double));
-        printf("Digite a quantidade de dados a serem inserdos: ");
+        printf("Enter the amount of data: ");
         scanf ("%d", &number_of_values);
 
         if(number_of_values >= 1)
         {
-            printf("Digite os dados de X:\n");
+            printf("Enter the X data:\n");
             double val;
             for (int i = 0; i < number_of_values; i++)
             {
                 scanf("%lf", &val);
                 *(vector1+ i) = val;
             }
-            printf("Digite os dados de Y:\n");
+            printf("Enter the y data:\n");
             double val2;
             for (int i = 0; i < number_of_values; i++)
             {
@@ -57,10 +57,10 @@ void run_regression()
 
 
         char resp[1];
-        printf("Deseja utilizar novos dados(s/n)? ");
+        printf("You want to use new data(y/n)? ");
         scanf("%s", &resp);
 
-        if(strcmp(resp, "s") == 0)
+        if(strcmp(resp, "y") == 0)
         {
             continue;
         }

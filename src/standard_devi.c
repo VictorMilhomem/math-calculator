@@ -16,7 +16,7 @@ void create_csv(double values[], int N, int append_file, int file_ID)
     if(!append_file)
     {
         fp = fopen("./csv/sample.csv", "w");
-        fprintf(fp, "ID,Tamanho_da_amostra(N),Soma_dos_numeros,Media,Desvio_padrão(σ),Variação_da_população(σ²),Desvio_padrão_da_amostra(s),Variação_da_amostra(s²)\n");
+        fprintf(fp, "ID,Sample_Size(N),Sum_of_sample,Media,Standard_Dev(σ),Population_variation(σ²),Standard_Dev_sample(s),Sample_variation(s²)\n");
     }
 
     else
@@ -40,13 +40,13 @@ void show_results(int N, double results[])
 {
     // showing the results
     printf("-----------------Resultados--------------------------");
-    printf("\nTamanho da amostra(N): %d\n", N);
-    printf("Soma dos numeros: %lf\n", results[0]);
+    printf("\nSize of sample(N): %d\n", N);
+    printf("Numbers sum: %lf\n", results[0]);
     printf("Media: %lf\n", results[1]);
-    printf("Desvio padrão(σ): %lf\n", results[2]);
-    printf("Variação da população(σ²): %lf\n", results[3]);
-    printf("Desvio padrão da amostra(s): %lf\n", results[4]);
-    printf("Variação da amostra(s²): %lf\n", results[5]);
+    printf("Standard Deviation(σ): %lf\n", results[2]);
+    printf("Population variation(σ²): %lf\n", results[3]);
+    printf("Sample Standard Deviation(s): %lf\n", results[4]);
+    printf("Sample variation(s²): %lf\n", results[5]);
     printf("------------------------------------------------------");
 }
 
@@ -105,7 +105,7 @@ double calculate(double values[], int N, int append_file, int file_ID)
     // storing all of the calculated values
 
     create_csv(results, N, append_file, file_ID);    
-    printf("\nDados salvos no arquivo sample.csv\n");
+    printf("\nData saved in sample.csv\n");
     free(results);
 
 }
@@ -126,13 +126,13 @@ void runStd()
         // alocating the memory
         int number_of_values;
         double *values;
-        printf("Digite a quantidade de dados a serem inserdos: ");
+        printf("Enter the amount of data: ");
         scanf ("%d", &number_of_values);
 
         if(number_of_values >= 1)
         {
             values = malloc(number_of_values * sizeof(double));
-            printf("Digite os valores:\n");
+            printf("Enter the values:\n");
             double val;
             for (int i = 0; i < number_of_values; i++)
             {
@@ -150,10 +150,10 @@ void runStd()
         }
 
         char resp[1];
-        printf("Deseja utilizar novos dados(s/n)? ");
+        printf("You want to use new data(y/n)? ");
         scanf("%s", &resp);
 
-        if(strcmp(resp, "s") == 0)
+        if(strcmp(resp, "y") == 0)
         {
             append_file = 1;
             id += 1;
