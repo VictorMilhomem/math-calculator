@@ -1,5 +1,8 @@
-#include "calc.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <math.h>
+#include "calc.h"
 
 
 void run();
