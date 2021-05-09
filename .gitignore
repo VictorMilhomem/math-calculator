@@ -1,3 +1,9 @@
-**/src/*.o/
-**/src/calculator.exe/
-**/src/csv/*.csv/
+# ignore all .o files
+*.o
+
+# ignore the csv file
+src/csv/sample.csv
+
+#ignore calculator exe file
+
+*.exe
