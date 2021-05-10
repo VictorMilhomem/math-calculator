@@ -5,13 +5,12 @@
 #include "calc.h"
 
 
-void run();
 
 int main(int argc, char* argv[])
 {
-    if (argc == 1)
+    if (argc < 2)
     {
-            run();
+            help();
     }
 
     else if (argc == 2)

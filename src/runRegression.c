@@ -13,6 +13,7 @@ void run_regression()
 {
     int running = 1;
     while(running){
+        printf("\n-------------------Regression analysis------------------------\n");
         // alocating the memory
         int number_of_values;
         double *vector1 = malloc(number_of_values * sizeof(double));

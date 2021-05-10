@@ -123,6 +123,7 @@ void runStd()
     int id = 0;
     int running = 1;
     while(running){
+        printf("\n-------------------Standard Deviation------------------------\n");
         // alocating the memory
         int number_of_values;
         double *values;

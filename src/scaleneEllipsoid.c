@@ -38,6 +38,7 @@ void runEllipsoid()
 {
     int running = 1;
     while(running){
+        printf("\n-------------------Scalene Ellipsoid------------------------\n");
         // alocating the memory
         int number_of_values = 3;
         double *vector1 = malloc(number_of_values * sizeof(double));

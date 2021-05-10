@@ -30,6 +30,7 @@ void run_prod()
 {
     int running = 1;
     while(running){
+        printf("\n-------------------Scalar Product------------------------\n");
         // alocating the memory
         int number_of_values;
         int *vector1;
