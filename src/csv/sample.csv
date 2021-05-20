@@ -1,2 +1,2 @@
-ID,Tamanho_da_amostra(N),Soma_dos_numeros,Media,Desvio_padrão(σ),Variação_da_população(σ²),Desvio_padrão_da_amostra(s),Variação_da_amostra(s²)
-0,3,12.000000,4.000000,0.816497,0.666667,2.645751,7.000000,
+ID,Sample_Size(N),Sum_of_sample,Media,Standard_Dev(σ),Population_variation(σ²),Standard_Dev_sample(s),Sample_variation(s²)
+0,3,6.000000,2.000000,0.816497,0.666667,1.581139,2.500000,

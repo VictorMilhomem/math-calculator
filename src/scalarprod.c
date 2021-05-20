@@ -51,7 +51,7 @@ void run_prod()
                 *(vector1+ i) = val;
             }
 
-            printf("Enter the first vector data:\n");
+            printf("Enter the second vector data:\n");
             int val2;
             for (int i = 0; i < number_of_values; i++)
             {

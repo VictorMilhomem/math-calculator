@@ -16,13 +16,13 @@ void run_regression()
         printf("\n-------------------Regression analysis------------------------\n");
         // alocating the memory
         int number_of_values;
-        double *vector1 = malloc(number_of_values * sizeof(double));
-        double *vector2 = malloc(number_of_values * sizeof(double));
         printf("Enter the amount of data: ");
         scanf ("%d", &number_of_values);
 
         if(number_of_values >= 1)
         {
+            double *vector1 = malloc(number_of_values * sizeof(double));
+            double *vector2 = malloc(number_of_values * sizeof(double));
             printf("Enter the X data:\n");
             double val;
             for (int i = 0; i < number_of_values; i++)
