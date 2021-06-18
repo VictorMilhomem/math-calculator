@@ -4,6 +4,8 @@
 #include <math.h>
 
 #define PERCENT 37
+#define COEF_R 1
+#define R_SQUARE 2
 
 
 /*-----------------------------------------------
@@ -269,10 +271,10 @@ void log_regression(double x_values[], double y_values[], int n)
 
 
     // correlation coefficient
-    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, COEF_R, id);
 
     // coefficient of determination
-    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, R_SQUARE, id);
 
     // standard error of regression
     std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
@@ -330,10 +332,10 @@ void power_regression(double x_values[], double y_values[], int n)
 
 
     // correlation coefficient
-    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, COEF_R, id);
 
     // coefficient of determination
-    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, R_SQUARE, id);
 
     std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
 
@@ -388,10 +390,10 @@ void ab_exponential_regression(double x_values[], double y_values[], int n)
 
 
     // correlation coefficient
-    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, COEF_R, id);
 
     // coefficient of determination
-    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, R_SQUARE, id);
 
     std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
 
@@ -442,9 +444,9 @@ void hyperbolic_regression(double x_values[], double y_values[], int n)
 
     coef_a = (sum_yi / n) - (coef_b * sum_xi / n);
 
-    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, COEF_R, id);
 
-    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, R_SQUARE, id);
 
     std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
     
@@ -496,9 +498,9 @@ void exponential_regression(double x_values[], double y_values[], int n)
 
     coef_a = (sum_lnyi / n) - (coef_b * sum_xi / n);
 
-    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 1, id);
+    coef_r = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, COEF_R, id);
 
-    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, 2, id);
+    R_square = coefficient(x_values, y_values, sum_yi, coef_a, coef_b, n, R_SQUARE, id);
 
     std_err_of_reg = regression_error(y_values, x_values, coef_a, coef_b, n, id);
     
