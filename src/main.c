@@ -23,8 +23,6 @@ int main(int argc, char* argv[])
             run_prod();
         else if (strcmp(argv[1],"-r") == 0)
             run_regression();
-        else if (strcmp(argv[1],"-el") == 0)
-            runEllipsoid();
         else{
             return 1;
         }
